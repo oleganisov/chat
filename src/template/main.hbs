@@ -1,24 +1,24 @@
 <div class="wrapper">
     <div class="controls">
-        <a href="#" class="controls__link">
+        <a href="#" class="controls__link" id="link_minimize">
             <div class="controls__minimize"></div>
         </a>
-        <a href="#" class="controls__link">
+        <a href="#" class="controls__link" id="link_maximize">
             <div class="controls__maximize"></div>
         </a>
-        <a href="#" class="controls__link">
+        <a href="#" class="controls__link" id="link_close">
             <div class="controls__close"></div>
         </a>
     </div>
     <div class="main">
-        <div class="panel_left">
+        <div class="panel__left panel__left_active">
             <div class="nav">
                 <a href="#" class="nav__link">
                     <div class="nav__bar"></div>
                 </a>
-                <input type="text" class="nav__search" placeholder="Найти...">
+                <input type="text" class="nav__search active_display" placeholder="Найти...">
             </div>
-            <div class="users">
+            <div class="users active_display">
                 <ul class="users__list">
                     <li class="users__item">
                         <div class="avatar users__avatar">
@@ -38,7 +38,7 @@
                 </ul>
             </div>
         </div>
-        <div class="panel_right chat">
+        <div class="panel__right chat">
             <div class="chat__header">
                 <h3 class="chat__title">Чат</h3>
                 <div class="chat__info">2 участника</div>

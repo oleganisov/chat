@@ -1,13 +1,24 @@
 .main {
     display: flex;
     height: 450px;
+    width: 845px;
     background-color: #0e1621;
+    &__max {
+        height: calc(100vh - 22px);
+        width: 100%;
+    }
 }
 
-.panel_left {
-    width: 300px;
+.panel__left {
+    width: 4%;
     margin-right: 5px;
     background-color: rgb(23, 33, 43);
+}
+.panel__right {
+    width: 100%;
+}
+.panel__left_active {
+    width: 44%;
 }
 .nav {
     display: flex;
@@ -16,6 +27,7 @@
     padding-top: 5px;
     margin-bottom: 20px;
     &__search {
+        display: none;
         color: rgb(229, 229, 229);
         background-color: rgb(36, 47, 61);
         width: 195px;
@@ -49,6 +61,6 @@
     }
 }
 
-.panel_right {
-    width: 545px;
+.active_display {
+    display: block;
 }

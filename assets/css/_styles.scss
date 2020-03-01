@@ -49,4 +49,8 @@ h4 {
 .wrapper {
     margin: 0 auto;
     display: none;
+    &__max {
+        height: 100vh;
+        width: 100vw;
+    }
 }
