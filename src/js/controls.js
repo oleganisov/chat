@@ -1,3 +1,5 @@
+const wrapper = document.querySelector('.wrapper');
+
 const expand = () => {
     const btnExpand = document.querySelector('.nav__link');
     const panelLeft = document.querySelector('.panel__left');
@@ -13,16 +15,24 @@ const expand = () => {
 };
 const maximize = () => {
     const btnMax = document.querySelector('#link_maximize');
-    const wrapper = document.querySelector('.wrapper');
     const main = document.querySelector('.main');
 
     btnMax.addEventListener('click', e => {
         e.preventDefault();
-        // wrapper.style.height = '100vh';
-        // wrapper.style.width = '100vw';
         wrapper.classList.toggle('wrapper__max');
         main.classList.toggle('main__max');
     });
 };
 
-export { expand, maximize };
+const close = () => {
+    const btnClose = document.querySelector('#link_close');
+    const auth = document.querySelector('.auth');
+
+    btnClose.addEventListener('click', e => {
+        e.preventDefault();
+        auth.style.display = 'block';
+        wrapper.style.display = 'none';
+    });
+};
+
+export { expand, maximize, close };

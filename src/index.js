@@ -1,5 +1,5 @@
 import '../assets/css/_styles.scss';
-import { expand, maximize } from './js/controls';
+import { expand, maximize, close } from './js/controls';
 
 const auth = document.querySelector('.auth');
 const wrapper = document.querySelector('.wrapper');
@@ -27,3 +27,4 @@ btnSend.addEventListener('click', e => {
 
 expand();
 maximize();
+close();
