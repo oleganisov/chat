@@ -1,0 +1,21 @@
+.users {
+    &__avatar {
+        flex-direction: row;
+    }
+}
+
+.pic_small {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+    margin-bottom: initial;
+}
+
+.title_small {
+    font-size: 14px;
+    margin-bottom: initial;
+}
+.info_small {
+    font-size: 14px;
+    // margin-bottom: initial;
+}

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic-ext');
+@import 'auth';
+@import 'users';
+@import 'nav';
+body {
+    font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    height: 100%;
+    margin: initial;
+}
+button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+}
+input {
+    outline: none;
+}
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+}
+
+#chat-container {
+    background-color: rgb(14, 22, 33);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}

@@ -1,4 +1,4 @@
-import '../assets/css/styles.scss';
+import '../assets/css/_styles.scss';
 
 const authForm = document.querySelector('#form-auth');
 const btnSubmit = document.querySelector('.form__submit');
