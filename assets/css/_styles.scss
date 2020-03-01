@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic-ext');
+@import 'buttons';
 @import 'auth';
 @import 'users';
 @import 'nav';
 @import 'controls';
+@import 'chat';
+
 body {
     font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
     font-weight: 300;
@@ -37,7 +40,7 @@ h4 {
 }
 
 #chat-container {
-    background-color: rgb(14, 22, 33);
+    background-color: #09101a;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -45,4 +48,5 @@ h4 {
 
 .wrapper {
     margin: 0 auto;
+    display: none;
 }
