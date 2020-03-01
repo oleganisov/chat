@@ -2,6 +2,7 @@
 @import 'auth';
 @import 'users';
 @import 'nav';
+@import 'controls';
 body {
     font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
     font-weight: 300;
@@ -40,4 +41,8 @@ h4 {
     height: 100vh;
     display: flex;
     align-items: center;
+}
+
+.wrapper {
+    margin: 0 auto;
 }
