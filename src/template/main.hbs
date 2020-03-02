@@ -23,7 +23,7 @@
                     <li class="users__item">
                         <div class="avatar users__avatar">
                             <div class="avatar__pic pic_small"><img src="../../assets/img/avatar.png" alt=""
-                                    class="avatar__img">
+                                    class="avatar__img" id="myAvatar">
                             </div>
                             <div class="avatar__desc">
                                 <div class="avatar__title title_small">
@@ -44,8 +44,12 @@
                     <h3 class="chat__title">Чат</h3>
                     <div class="chat__info">2 участника</div>
                 </div>
-                <a href="#" class="chat__photo"><img src="../../assets/img/photo-camera.png" alt="camera"
-                        class="chat__pic"></a>
+                <input type="file" class="chat__photo" id="chatPhoto" accept="image/jpeg,image/jpg,image/png">
+                <label class="chat__label" for="chatPhoto" title="Выберите фото">
+                    <div class="chat__pic">
+                        <img src="../../assets/img/photo-camera.png" alt="camera">
+                    </div>
+                </label>
             </div>
             <div class="chat__box"></div>
             <form class="chat__form">
