@@ -30,9 +30,6 @@
         flex-grow: 2;
         background-color: transparent;
         overflow-y: auto;
-        // &::-webkit-scrollbar {
-        //     width: 12px;
-        // }
     }
     &__form {
         height: 55px;
@@ -74,6 +71,17 @@
         }
         &_left {
             align-self: flex-start;
+        }
+        &_msg {
+            position: relative;
+            margin-right: 15px;
+            bottom: 8px;
+        }
+        &_time {
+            position: relative;
+            top: 8px;
+            font-size: 12px;
+            color: rgb(125, 168, 211);
         }
     }
 }

@@ -1,29 +1,56 @@
 import io from 'socket.io-client';
+import { userNick } from './auth';
 
 const socket = io('http://localhost:3000');
 
 socket.on('connect', () => {
-    console.log('connect');
+    // console.log('connect');
 });
 
 const chat = () => {
     const chatForm = document.querySelector('#chatForm');
     const btnSend = document.querySelector('.chat__send');
-    const addMessage = message => {
+    const chatBox = document.querySelector('.chat__box');
+
+    const addMessage = msgObj => {
         const chatList = document.querySelector('.chat__list');
         const chatItem = document.createElement('li');
+        const chatItemMsg = document.createElement('span');
+        const chatItemTime = document.createElement('span');
 
+        chatItemTime.classList.add('chat__item_time');
+        chatItemTime.textContent = msgObj.time;
+        chatItemMsg.classList.add('chat__item_msg');
+        chatItemMsg.textContent = msgObj.message;
+
+        chatItem.appendChild(chatItemMsg);
+        chatItem.appendChild(chatItemTime);
         chatItem.classList.add('chat__item');
-        chatItem.classList.add('chat__item_right');
-        chatItem.textContent = message;
+        if (msgObj.user == userNick.value) {
+            chatItem.classList.add('chat__item_right');
+        } else {
+            chatItem.classList.add('chat__item_left');
+        }
+
         chatList.appendChild(chatItem);
-        chatList.scrollTop = chatList.scrollHeight;
+        chatBox.scrollTop = chatBox.scrollHeight;
     };
 
     btnSend.addEventListener('click', e => {
         e.preventDefault();
-        if (chatForm.message.value) {
-            socket.emit('chat message', chatForm.message.value);
+        let msgObj = {};
+        let time = new Date().toLocaleString('ru-RU', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        if (chatForm.message.value && userNick.value) {
+            msgObj = {
+                message: chatForm.message.value,
+                user: userNick.value,
+                time: time
+            };
+            socket.emit('chat message', msgObj);
         } else {
             alert('Введите сообщение!');
         }
