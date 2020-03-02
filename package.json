@@ -8,7 +8,8 @@
     "codestyle": "eslint src",
     "build": "webpack --progress --colors",
     "watch": "webpack-dev-server --progress --colors --open",
-    "start": "npm run watch"
+    "start": "npm run watch",
+    "ws_server": "node app.js"
   },
   "license": "MIT",
   "devDependencies": {
@@ -35,6 +36,8 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
-    "socket.io": "^2.3.0"
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
   }
 }

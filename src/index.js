@@ -1,13 +1,7 @@
 import '../assets/css/_styles.scss';
+import io from 'socket.io-client';
 import { expand, maximize, close } from './js/controls';
-
-const auth = document.querySelector('.auth');
-const wrapper = document.querySelector('.wrapper');
-const btnSubmit = document.querySelector('.form__submit');
-
-const authForm = document.querySelector('#form-auth');
-const userName = authForm.user;
-const userNick = authForm.nick;
+import auth from './js/auth';
 
 const fileReader = new FileReader();
 const chatPhoto = document.querySelector('#chatPhoto');
@@ -28,22 +22,35 @@ fileReader.addEventListener('load', () => {
     myAvatar.src = fileReader.result;
 });
 
-btnSubmit.addEventListener('click', e => {
-    e.preventDefault();
-    if (userName.value && userNick.value) {
-        auth.style.display = 'none';
-        wrapper.style.display = 'block';
-    } else {
-        alert('Не заполнены поля');
-    }
-});
+// socket.io
 
+const chatForm = document.querySelector('#chatForm');
 const btnSend = document.querySelector('.chat__send');
+
+const socket = io('http://localhost:3000');
+
+socket.on('connect', () => {
+    console.log('connect');
+});
 
 btnSend.addEventListener('click', e => {
     e.preventDefault();
+    socket.emit('chat message', chatForm.message.value);
+
+    chatForm.message.value = '';
+});
+socket.on('chat message', function(msg) {
+    const chatList = document.querySelector('.chat__list');
+    const chatItem = document.createElement('li');
+
+    chatItem.classList.add('chat__item');
+    chatItem.textContent = msg;
+    chatList.appendChild(chatItem);
+
+    window.scrollTo(0, document.body.scrollHeight);
 });
 
+auth();
 expand();
 maximize();
 close();

@@ -16,6 +16,7 @@ rules.push({
 
 module.exports = {
     entry: { index: './src/index.js' },
+    node: { fs: 'empty' },
     devServer: {
         index: 'index.html',
         overlay: true
