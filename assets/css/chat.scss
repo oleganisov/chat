@@ -51,15 +51,19 @@
         padding: 20px 0;
     }
     &__item {
-        background-color: rgb(43, 82, 120);
-        border-radius: 5px;
-        margin: 0 10px 5px;
-        padding: 10px 15px;
+        display: flex;
+
         &_right {
             align-self: flex-end;
         }
         &_left {
             align-self: flex-start;
+        }
+        &_block {
+            background-color: rgb(43, 82, 120);
+            border-radius: 5px;
+            margin: 0 10px 5px;
+            padding: 10px 15px;
         }
         &_msg {
             position: relative;

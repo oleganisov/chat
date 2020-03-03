@@ -1,5 +1,25 @@
-<li class="chat__item {{class}}">
-    <div>
-        <span class="chat__item_msg">{{message}}</span><span class="chat__item_time">{{time}}</span>
+{{#if isRight}}
+<li class="chat__item chat__item_right">
+    <div class='chat__item_block'>
+        <span class="chat__item_msg">{{message}}</span>
+        <span class="chat__item_time">{{time}}</span>
+    </div>
+    {{#if isAvatar}}
+    <div class='avatar__pic pic_small'>
+        <img src="{{avatar}}" alt="user_avatar" class='avatar__img'>
+    </div>
+    {{/if}}
+</li>
+{{else}}
+<li class="chat__item chat__item_left">
+    {{#if isAvatar}}
+    <div class='avatar__pic pic_small'>
+        <img src="{{avatar}}" alt="user_avatar" class='avatar__img'>
+    </div>
+    {{/if}}
+    <div class='chat__item_block'>
+        <span class="chat__item_msg">{{message}}</span>
+        <span class="chat__item_time">{{time}}</span>
     </div>
 </li>
+{{/if}}

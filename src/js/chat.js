@@ -1,12 +1,15 @@
 import io from 'socket.io-client';
 import renderMessage from '../template/msg.hbs';
 import { userNick } from './auth';
+import { userAvatar } from './file';
 
 const socket = io('http://localhost:3000');
 
 socket.on('connect', () => {
     // console.log('connect');
 });
+
+let whoLast = '';
 
 const chat = () => {
     const chatForm = document.querySelector('#chatForm');
@@ -16,24 +19,28 @@ const chat = () => {
     const addMessage = msgObj => {
         const chatList = document.querySelector('.chat__list');
         let listHTML = chatList.innerHTML;
+        let isAvatar = false;
+        let isRight = false;
 
         if (msgObj.user == userNick.value) {
-            listHTML =
-                listHTML +
-                renderMessage({
-                    message: msgObj.message,
-                    time: msgObj.time,
-                    class: 'chat__item_right'
-                });
-        } else {
-            listHTML =
-                listHTML +
-                renderMessage({
-                    message: msgObj.message,
-                    time: msgObj.time,
-                    class: 'chat__item_left'
-                });
+            isRight = true;
         }
+        if (whoLast !== msgObj.user) {
+            isAvatar = true;
+        } else {
+            isAvatar = false;
+        }
+        whoLast = msgObj.user;
+
+        listHTML =
+            listHTML +
+            renderMessage({
+                message: msgObj.message,
+                time: msgObj.time,
+                isRight: isRight,
+                avatar: msgObj.avatar,
+                isAvatar: isAvatar
+            });
 
         chatList.innerHTML = listHTML;
         chatBox.scrollTop = chatBox.scrollHeight;
@@ -51,7 +58,8 @@ const chat = () => {
             msgObj = {
                 message: chatForm.message.value,
                 user: userNick.value,
-                time: time
+                time: time,
+                avatar: userAvatar
             };
             socket.emit('chat message', msgObj);
         } else {

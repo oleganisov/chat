@@ -8,11 +8,16 @@
     }
 }
 
-.pic_small {
+.pic_medium {
     width: 45px;
     height: 45px;
-    margin-right: 10px;
     margin-bottom: initial;
+}
+.pic_small {
+    width: 35px;
+    height: 35px;
+    margin-bottom: initial;
+    margin-right: 5px;
 }
 
 .title_small {
