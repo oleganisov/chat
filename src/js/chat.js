@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import renderMessage from '../template/msg.hbs';
 import { userNick } from './auth';
 
 const socket = io('http://localhost:3000');
@@ -14,25 +15,27 @@ const chat = () => {
 
     const addMessage = msgObj => {
         const chatList = document.querySelector('.chat__list');
-        const chatItem = document.createElement('li');
-        const chatItemMsg = document.createElement('span');
-        const chatItemTime = document.createElement('span');
+        let listHTML = chatList.innerHTML;
 
-        chatItemTime.classList.add('chat__item_time');
-        chatItemTime.textContent = msgObj.time;
-        chatItemMsg.classList.add('chat__item_msg');
-        chatItemMsg.textContent = msgObj.message;
-
-        chatItem.appendChild(chatItemMsg);
-        chatItem.appendChild(chatItemTime);
-        chatItem.classList.add('chat__item');
         if (msgObj.user == userNick.value) {
-            chatItem.classList.add('chat__item_right');
+            listHTML =
+                listHTML +
+                renderMessage({
+                    message: msgObj.message,
+                    time: msgObj.time,
+                    class: 'chat__item_right'
+                });
         } else {
-            chatItem.classList.add('chat__item_left');
+            listHTML =
+                listHTML +
+                renderMessage({
+                    message: msgObj.message,
+                    time: msgObj.time,
+                    class: 'chat__item_left'
+                });
         }
 
-        chatList.appendChild(chatItem);
+        chatList.innerHTML = listHTML;
         chatBox.scrollTop = chatBox.scrollHeight;
     };
 
