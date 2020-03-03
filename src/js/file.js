@@ -3,6 +3,8 @@ const file = () => {
     const avatarPhoto = document.querySelector('#avatarPhoto');
     const myAvatar = document.querySelector('#myAvatar');
     const photoImg = document.querySelector('.photo__img');
+    const btnCancel = document.querySelector('.photo__cancel');
+    const btnSave = document.querySelector('.photo__save');
 
     const overlay = document.querySelector('.photo_overlay');
 
@@ -20,6 +22,16 @@ const file = () => {
     });
     fileReader.addEventListener('load', () => {
         photoImg.src = fileReader.result;
+    });
+    btnCancel.addEventListener('click', e => {
+        e.preventDefault();
+        avatarPhoto.value = null;
+        overlay.style.display = 'none';
+    });
+    btnSave.addEventListener('click', e => {
+        e.preventDefault();
+        overlay.style.display = 'none';
+        myAvatar.src = fileReader.result;
     });
 };
 
