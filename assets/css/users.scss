@@ -3,6 +3,9 @@
     &__avatar {
         flex-direction: row;
     }
+    &__list {
+        padding-left: 5px;
+    }
 }
 
 .pic_small {
@@ -13,6 +16,7 @@
 }
 
 .title_small {
+    font-weight: 400;
     font-size: 14px;
     margin-bottom: initial;
 }

@@ -3,22 +3,11 @@
     flex-direction: column;
     &__header {
         display: flex;
-        align-items: center;
-        background-color: rgb(23, 33, 43);
-        height: 65px;
-    }
-    &__descr {
-        display: flex;
         flex-direction: column;
         justify-content: center;
-        flex-grow: 1;
+        background-color: rgb(23, 33, 43);
         padding-left: 5px;
         height: 65px;
-    }
-    &__label {
-        cursor: pointer;
-        width: 25px;
-        padding-right: 10px;
     }
     &__title {
         color: white;

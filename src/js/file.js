@@ -1,9 +1,9 @@
 const file = () => {
     const fileReader = new FileReader();
-    const chatPhoto = document.querySelector('#chatPhoto');
+    const avatarPhoto = document.querySelector('#avatarPhoto');
     const myAvatar = document.querySelector('#myAvatar');
 
-    chatPhoto.addEventListener('change', e => {
+    avatarPhoto.addEventListener('change', e => {
         const file = e.target.files[0];
 
         if (file) {

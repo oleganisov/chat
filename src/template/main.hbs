@@ -22,12 +22,17 @@
                 <ul class="users__list">
                     <li class="users__item">
                         <div class="avatar users__avatar">
-                            <div class="avatar__pic pic_small"><img src="../../assets/img/avatar_small.png" alt=""
-                                    class="avatar__img" id="myAvatar">
-                            </div>
+                            <input type="file" class="avatar__photo" id="avatarPhoto"
+                                accept="image/jpeg,image/jpg,image/png">
+                            <label class="avatar__label" for="avatarPhoto" title="Выберите фото">
+                                <div class="avatar__pic pic_small">
+                                    <img src="../../assets/img/photo-camera.png" alt="camera" class="avatar__img"
+                                        id="myAvatar">
+                                </div>
+                            </label>
                             <div class="avatar__desc">
                                 <div class="avatar__title title_small">
-                                    <h3>
+                                    <h3 id="currentUser">
                                         Алексей Трубин
                                     </h3>
                                 </div>
@@ -40,16 +45,8 @@
         </div>
         <div class="panel__right chat">
             <div class="chat__header">
-                <div class="chat__descr">
-                    <h3 class="chat__title">Чат</h3>
-                    <div class="chat__info">2 участника</div>
-                </div>
-                <input type="file" class="chat__photo" id="chatPhoto" accept="image/jpeg,image/jpg,image/png">
-                <label class="chat__label" for="chatPhoto" title="Выберите фото">
-                    <div class="chat__pic">
-                        <img src="../../assets/img/photo-camera.png" alt="camera">
-                    </div>
-                </label>
+                <h3 class="chat__title">Чат</h3>
+                <div class="chat__info">2 участника</div>
             </div>
             <div class="chat__box">
                 <ul class="chat__list"></ul>
