@@ -33,7 +33,14 @@ io.on('connection', socket => {
     });
 
     socket.on('disconnect', data => {
-        console.log(data, 'user disconnected');
+        let userIndex = connectedUsers.findIndex(
+            item => item.userId == socket.id
+        );
+
+        connectedUsers.splice(userIndex, 1);
+        io.emit('userDisconnect', connectedUsers);
+
+        console.log(socket.id, 'user disconnected');
     });
 
     socket.on('chat message', msg => {

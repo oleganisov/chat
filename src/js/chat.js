@@ -82,6 +82,7 @@ const chat = () => {
     socket.on('connectUser', data => addUser(data));
 
     socket.on('changeAvatar', data => addUser(data));
+    socket.on('userDisconnect', data => addUser(data));
 };
 
 export default chat;
