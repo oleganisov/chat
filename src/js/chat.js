@@ -1,5 +1,5 @@
 import renderMessage from '../template/msg.hbs';
-import renderUser from '../template/user.hbs';
+import renderUser from '../template/users.hbs';
 import { userNick, socket } from './auth';
 import { userAvatar } from './file';
 

@@ -6,6 +6,9 @@
     &__list {
         padding-left: 5px;
     }
+    &__item {
+        margin-bottom: 10px;
+    }
 }
 
 .pic_medium {
@@ -27,4 +30,9 @@
 }
 .info_small {
     font-size: 14px;
+}
+
+.current_user {
+    padding-left: 5px;
+    margin-bottom: 10px;
 }
