@@ -1,5 +1,7 @@
 .users {
     display: none;
+    height: 100%;
+    overflow-y: auto;
     &__avatar {
         flex-direction: row;
     }

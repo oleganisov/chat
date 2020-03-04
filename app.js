@@ -32,8 +32,8 @@ io.on('connection', socket => {
         console.log('user change avatar');
     });
 
-    socket.on('disconnect', () => {
-        console.log('user disconnected');
+    socket.on('disconnect', data => {
+        console.log(data, 'user disconnected');
     });
 
     socket.on('chat message', msg => {
