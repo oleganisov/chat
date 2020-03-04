@@ -2,15 +2,34 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
     res.send('<h1>Hello world</h1>');
 });
 
-io.on('connection', function(socket) {
-    socket.on('chat message', function(msg) {
-        io.emit('chat message', msg);
+const connectedUsers = [];
+
+io.on('connection', socket => {
+    socket.on('connectUser', data => {
+        let { userNick, userName, userAvatar } = data;
+        let newUser = { userId: socket.id, userNick, userName, userAvatar };
+
+        // data.userId = socket.id;
+        connectedUsers.push(newUser);
+
+        io.emit('connectUser', connectedUsers);
+        console.log('connectUsers', connectedUsers);
     });
-    console.log('a user connected');
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+
+    socket.on('chat message', msg => {
+        io.emit('chat message', msg);
+        console.log('message: ' + msg);
+    });
+
+    console.log('A user connected', socket.id);
 });
 
 http.listen(3000, function() {

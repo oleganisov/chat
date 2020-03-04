@@ -1,13 +1,7 @@
-import io from 'socket.io-client';
 import renderMessage from '../template/msg.hbs';
-import { userNick } from './auth';
+import renderUser from '../template/user.hbs';
+import { userNick, socket } from './auth';
 import { userAvatar } from './file';
-
-const socket = io('http://localhost:3000');
-
-socket.on('connect', () => {
-    // console.log('connect');
-});
 
 let whoLast = '';
 
@@ -46,6 +40,21 @@ const chat = () => {
         chatBox.scrollTop = chatBox.scrollHeight;
     };
 
+    const addUser = data => {
+        const chatInfo = document.querySelector('.chat__info');
+        const usersList = document.querySelector('#usersList');
+        let listHTML = usersList.innerHTML;
+        const users = data.filter(item => {
+            return item.userNick != userNick.value;
+        });
+
+        chatInfo.innerText = `${data.length} участника(ов)`;
+        if (users.length) {
+            listHTML = renderUser({ users });
+            usersList.innerHTML = listHTML;
+        }
+    };
+
     btnSend.addEventListener('click', e => {
         e.preventDefault();
         let msgObj = {};
@@ -69,6 +78,8 @@ const chat = () => {
     });
 
     socket.on('chat message', msg => addMessage(msg));
+
+    socket.on('connectUser', data => addUser(data));
 };
 
 export default chat;
