@@ -1,3 +1,5 @@
+import { userNick, userName, socket } from './auth';
+
 let userAvatar = '../../assets/img/photo-camera.png';
 const file = () => {
     const fileReader = new FileReader();
@@ -34,6 +36,12 @@ const file = () => {
         overlay.style.display = 'none';
         myAvatar.src = fileReader.result;
         userAvatar = fileReader.result;
+
+        socket.emit('changeAvatar', {
+            userNick: userNick.value,
+            userName: userName.value,
+            userAvatar: userAvatar
+        });
     });
 };
 

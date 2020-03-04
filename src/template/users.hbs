@@ -2,12 +2,17 @@
 <li class="users__item">
     <div class="avatar users__avatar">
         <div class="avatar__pic pic_medium">
+            {{#if userAvatar}}
+            <img src="{{userAvatar}}" alt="camera" class="avatar__img" id="myAvatar">
+            {{/if}}
+            {{#unless userAvatar}}
             <img src="../../assets/img/photo-camera.png" alt="camera" class="avatar__img" id="myAvatar">
+            {{/unless}}
         </div>
         <div class="avatar__desc">
             <div class="avatar__title title_small">
                 <h3 id="currentUser">
-                    {{this.userName}}
+                    {{userName}}
                 </h3>
             </div>
             <div class="avatar__info info_small">Привет</div>

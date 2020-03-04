@@ -10,14 +10,26 @@ const connectedUsers = [];
 
 io.on('connection', socket => {
     socket.on('connectUser', data => {
-        let { userNick, userName, userAvatar } = data;
-        let newUser = { userId: socket.id, userNick, userName, userAvatar };
+        let { userNick, userName } = data;
+        let newUser = { userId: socket.id, userNick, userName };
 
-        // data.userId = socket.id;
         connectedUsers.push(newUser);
 
         io.emit('connectUser', connectedUsers);
         console.log('connectUsers', connectedUsers);
+    });
+
+    socket.on('changeAvatar', data => {
+        let { userNick, userName, userAvatar } = data;
+        let user = { userId: socket.id, userNick, userName, userAvatar };
+
+        let userIndex = connectedUsers.findIndex(
+            item => item.userNick == userNick
+        );
+
+        connectedUsers.splice(userIndex, 1, user);
+        io.emit('changeAvatar', connectedUsers);
+        console.log('user change avatar');
     });
 
     socket.on('disconnect', () => {
