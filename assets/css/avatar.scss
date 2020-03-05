@@ -21,7 +21,10 @@
         transform: translate(-50%, -50%);
     }
     &__desc {
-        text-align: left;
+        text-align: center;
+        &_users {
+            text-align: left;
+        }
     }
     &__title {
         font-weight: 500;
