@@ -12,6 +12,14 @@ const chat = () => {
 
     const addMessage = msgObj => {
         const chatList = document.querySelector('.chat__list');
+        const usersList = document.querySelectorAll('div[data-userid]');
+
+        usersList.forEach(elem => {
+            if (elem.dataset.userid == msgObj.userId) {
+                elem.innerText = msgObj.message;
+            }
+        });
+
         let listHTML = chatList.innerHTML;
         let isAvatar = false;
         let isRight = false;
