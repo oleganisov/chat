@@ -9,30 +9,31 @@ app.get('/', (req, res) => {
 const connectedUsers = [];
 
 io.on('connection', socket => {
-    socket.on('connectUser', data => {
-        let { userNick, userName } = data;
-        let newUser = { userId: socket.id, userNick, userName };
+    socket.on('connectUser', () => {
+        socket.emit('registerInfo', { userId: socket.id });
+        console.log('connectUser: ' + socket.id);
+    });
+
+    socket.on('registerInfo', data => {
+        let { userId, userNick, userName } = data;
+        let newUser = { userId: userId, userNick, userName };
 
         connectedUsers.push(newUser);
-
         io.emit('connectUser', connectedUsers);
-        console.log('connectUsers', connectedUsers);
     });
 
     socket.on('changeAvatar', data => {
-        let { userNick, userName, userAvatar } = data;
-        let user = { userId: socket.id, userNick, userName, userAvatar };
+        let { userId, userNick, userName, userAvatar } = data;
+        let user = { userId: userId, userNick, userName, userAvatar };
 
-        let userIndex = connectedUsers.findIndex(
-            item => item.userNick == userNick
-        );
+        let userIndex = connectedUsers.findIndex(item => item.userId == userId);
 
         connectedUsers.splice(userIndex, 1, user);
         io.emit('changeAvatar', connectedUsers);
-        console.log('user change avatar');
+        console.log('changeAvatar: ' + socket.id, userId);
     });
 
-    socket.on('disconnect', data => {
+    socket.on('disconnect', () => {
         let userIndex = connectedUsers.findIndex(
             item => item.userId == socket.id
         );
@@ -40,15 +41,13 @@ io.on('connection', socket => {
         connectedUsers.splice(userIndex, 1);
         io.emit('userDisconnect', connectedUsers);
 
-        console.log(socket.id, 'user disconnected');
+        console.log('userDisconnect: ' + socket.id);
     });
 
     socket.on('chat message', msg => {
         io.emit('chat message', msg);
-        console.log('message: ' + msg);
+        console.log('chat message: ' + msg);
     });
-
-    console.log('A user connected', socket.id);
 });
 
 http.listen(3000, function() {

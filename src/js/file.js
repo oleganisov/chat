@@ -1,4 +1,4 @@
-import { userNick, userName, socket } from './auth';
+import { userNick, userName, userId, socket } from './auth';
 
 let userAvatar = '../../assets/img/photo-camera.png';
 const file = () => {
@@ -38,6 +38,7 @@ const file = () => {
         userAvatar = fileReader.result;
 
         socket.emit('changeAvatar', {
+            userId: userId,
             userNick: userNick.value,
             userName: userName.value,
             userAvatar: userAvatar

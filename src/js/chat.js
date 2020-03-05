@@ -1,6 +1,6 @@
 import renderMessage from '../template/msg.hbs';
 import renderUser from '../template/users.hbs';
-import { userNick, socket } from './auth';
+import { userNick, userId, socket } from './auth';
 import { userAvatar } from './file';
 
 let whoLast = '';
@@ -16,15 +16,15 @@ const chat = () => {
         let isAvatar = false;
         let isRight = false;
 
-        if (msgObj.user == userNick.value) {
+        if (msgObj.userId == userId) {
             isRight = true;
         }
-        if (whoLast !== msgObj.user) {
+        if (whoLast !== msgObj.userId) {
             isAvatar = true;
         } else {
             isAvatar = false;
         }
-        whoLast = msgObj.user;
+        whoLast = msgObj.userId;
 
         listHTML =
             listHTML +
@@ -45,7 +45,7 @@ const chat = () => {
         const usersList = document.querySelector('#usersList');
         let listHTML = usersList.innerHTML;
         const users = data.filter(item => {
-            return item.userNick != userNick.value;
+            return item.userId != userId;
         });
 
         chatInfo.innerText = `${data.length} участника(ов)`;
@@ -67,6 +67,7 @@ const chat = () => {
             msgObj = {
                 message: chatForm.message.value,
                 user: userNick.value,
+                userId: userId,
                 time: time,
                 avatar: userAvatar
             };

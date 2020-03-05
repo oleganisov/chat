@@ -9,6 +9,7 @@ const currentUser = document.querySelector('#currentUser');
 const userName = authForm.user;
 const userNick = authForm.nick;
 const socket = io('http://localhost:3000');
+let userId = '';
 
 const auth = () => {
     btnSubmit.addEventListener('click', e => {
@@ -26,7 +27,15 @@ const auth = () => {
             alert('Не заполнены поля');
         }
     });
+    socket.on('registerInfo', data => {
+        userId = data.userId;
+        socket.emit('registerInfo', {
+            userId: userId,
+            userNick: userNick.value,
+            userName: userName.value
+        });
+    });
 };
 
 export default auth;
-export { userNick, userName, socket };
+export { userNick, userName, userId, socket };
