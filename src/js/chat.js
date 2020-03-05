@@ -62,9 +62,7 @@ const chat = () => {
             usersList.innerHTML = listHTML;
         }
     };
-
-    btnSend.addEventListener('click', e => {
-        e.preventDefault();
+    const sendMessage = () => {
         let msgObj = {};
         let time = new Date().toLocaleString('ru-RU', {
             hour: '2-digit',
@@ -84,6 +82,17 @@ const chat = () => {
             alert('Введите сообщение!');
         }
         chatForm.message.value = '';
+    };
+
+    btnSend.addEventListener('click', e => {
+        e.preventDefault();
+        sendMessage();
+    });
+
+    chatForm.message.addEventListener('keyup', e => {
+        if (e.ctrlKey && e.keyCode == 13) {
+            sendMessage();
+        }
     });
 
     socket.on('chat message', msg => addMessage(msg));
