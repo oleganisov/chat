@@ -1,0 +1,22 @@
+{{#each users}}
+<li class="users__item">
+    <div class="avatar users__avatar">
+        <div class="avatar__pic pic_medium">
+            {{#if userAvatar}}
+            <img src="{{userAvatar}}" alt="camera" class="avatar__img" id="myAvatar">
+            {{/if}}
+            {{#unless userAvatar}}
+            <img src="../../assets/img/photo-camera.png" alt="camera" class="avatar__img" id="myAvatar">
+            {{/unless}}
+        </div>
+        <div class="avatar__desc avatar__desc_users">
+            <div class="avatar__title title_small">
+                <h3 id="currentUser">
+                    {{userName}}
+                </h3>
+            </div>
+            <div class="avatar__info info_small" data-userid={{userId}}></div>
+        </div>
+    </div>
+</li>
+{{/each}}

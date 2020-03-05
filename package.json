@@ -9,7 +9,7 @@
     "build": "webpack --progress --colors",
     "watch": "webpack-dev-server --progress --colors --open",
     "start": "npm run watch",
-    "ws_server": "node app.js"
+    "server": "node app.js"
   },
   "license": "MIT",
   "devDependencies": {

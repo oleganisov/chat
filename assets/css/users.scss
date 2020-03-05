@@ -1,18 +1,29 @@
 .users {
     display: none;
+    height: 100%;
+    overflow-y: auto;
     &__avatar {
         flex-direction: row;
     }
     &__list {
         padding-left: 5px;
     }
+    &__item {
+        margin-bottom: 10px;
+    }
 }
 
-.pic_small {
+.pic_medium {
     width: 45px;
     height: 45px;
-    margin-right: 10px;
     margin-bottom: initial;
+    margin-right: 10px;
+}
+.pic_small {
+    width: 35px;
+    height: 35px;
+    margin-bottom: initial;
+    margin-right: 5px;
 }
 
 .title_small {
@@ -22,4 +33,9 @@
 }
 .info_small {
     font-size: 14px;
+}
+
+.current_user {
+    padding-left: 5px;
+    margin-bottom: 10px;
 }
